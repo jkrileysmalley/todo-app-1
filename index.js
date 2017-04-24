@@ -11,7 +11,7 @@ mongoose.connect('mongodb://admin:password@ds111441.mlab.com:11441/barts-db');
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
+app.use(express.static('public'));
 
 //listen (start app)
 app.listen(3000);
@@ -46,5 +46,15 @@ app.delete('/api/todos/:todo_id', function(req, res){
 	})
 })
 
+app.get('*', function(req, res){
+	res.sendfile('./public/index.html');
+})
+
+
 
 console.log("App listening on port 3000");
+
+
+
+
+
